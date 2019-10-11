@@ -3,4 +3,4 @@ project(Clion)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Clion main.cpp calculate.cpp calculate.h)
+add_executable(Clion main.cpp calculate.cpp calculate.h hello.cpp hello.h)
