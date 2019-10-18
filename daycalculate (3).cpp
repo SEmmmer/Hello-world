@@ -2,16 +2,16 @@
 // Created by 杨靖华 on 2019/10/11.
 //
 
-#include "calculate.h"
+#include "daycalculate (3).h"
 #include <iostream>
 using namespace std;
 
-int main1(){
+int main3(){
     int y=0;
     int m=0;
     int d=0;
     int num=0;
-    cout<<"hello,this is a calculator of date"<<endl;
+    cout<<"grade (2),this is a calculator of date"<<endl;
     cout<<"please enter year,month and day"<<endl;
     cin>>y>>m>>d;
     switch (m){

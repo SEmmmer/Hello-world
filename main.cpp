@@ -32,14 +32,14 @@ int main0() {
                 cout << "you should pay " << tax << " for your income" << endl;
                 cout << "You still have " << gain << " yuan" << endl;
             } else {
-                if (income <= 9000) {
+                if (income <= 12500) {
                     tax = 1500 * 0.03 + 3000 * 0.1 + (income - 8000) * 0.2;
                     gain = income - tax;
                     cout << "You should pay " << tax << " for your income" << endl;
                     cout << "You still have " << gain << " yuan" << endl;
                 } else {
                     tax = 0;
-                    cout << "Now we can't calculate your tax!" << endl;
+                    cout << "Now we can't daycalculate (3) your tax!" << endl;
                 }
             }
         }
