@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main0() {
+int main() {
     double income = 0;
     double tax = 0;
     double gain = 0;

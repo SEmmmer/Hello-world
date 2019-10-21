@@ -2,11 +2,11 @@
 // Created by 杨靖华 on 2019/10/11.
 //
 
-#include "daycalculate (3).h"
+#include "daycalculate3.h"
 #include <iostream>
 using namespace std;
 
-int main3(){
+int main(){
     int y=0;
     int m=0;
     int d=0;

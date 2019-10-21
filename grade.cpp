@@ -2,12 +2,12 @@
 // Created by 杨靖华 on 2019/10/11.
 //本项目创建用于测试百分制转五分制
 
-#include "grade (2).h"
+#include "grade.h"
 #include <iostream>
 
 using namespace std;
 
-int main2() {
+int main() {
     int a;
     int grade;
 
