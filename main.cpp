@@ -4,45 +4,33 @@
 using namespace std;
 
 int main() {
-    double income = 0;
-    double tax = 0;
-    double gain = 0;
-
+    int n = 1;
+    int i = 1;
+    double tax;
+    double income;
+    double sumtax = 0;
     cout << "2019114465杨靖华" << endl;
-    cout << "Please enter your income" << endl;
-    cin >> income;
 
-    if (income < 0) {
-        cout << "Please enter correct number!!" << endl;
-    }
+    while (n == 1) {
+        cout << i << "员工的收入：";
+        cin >> income;
 
-
-    if (income <= 3500) {
-        cout << "You needn't to pay the tax " << endl;
-    } else {
-        if (income <= 5000) {
+        if (income < 0) {
+            cout << "该公司一共有： " << i - 1 << "人" << endl;
+            cout << "总缴税额： " << sumtax << "元" << endl;
+            exit(1);
+        } else if (income <= 3500) {
+            tax = 0;
+        } else if (income <= 5000) {
             tax = (income - 3500) * 0.03;
-            gain = income - tax;
-            cout << "You should pay " << tax << " for your income" << endl;
-            cout << "You still have " << gain << " yuan" << endl;
-        } else {
-            if (income <= 8000) {
-                tax = 1500 * 0.03 + (income - 5000) * 0.1;
-                gain = income - tax;
-                cout << "you should pay " << tax << " for your income" << endl;
-                cout << "You still have " << gain << " yuan" << endl;
-            } else {
-                if (income <= 12500) {
-                    tax = 1500 * 0.03 + 3000 * 0.1 + (income - 8000) * 0.2;
-                    gain = income - tax;
-                    cout << "You should pay " << tax << " for your income" << endl;
-                    cout << "You still have " << gain << " yuan" << endl;
-                } else {
-                    tax = 0;
-                    cout << "Now we can't daycalculate (3) your tax!" << endl;
-                }
-            }
+        } else if (income <= 8000) {
+            tax = 1500 * 0.03 + (income - 5000) * 0.1;
+        } else if (income > 8000) {
+            tax = 1500 * 0.03 + 3000 * 0.1 + (income - 8000) * 0.1;
         }
+        cout << "该员工应缴税： " << tax << "元" << endl;
+        i = i + 1;
+        sumtax += tax;
     }
     return 0;
 }

@@ -10,16 +10,13 @@ using namespace std;
 int main() {
     int a;
     int grade;
-
     cout << "Please enter a number which between 0 and 100." << endl;
     cin >> a;
     if (a > 100 || a < 0) {
         cout << "Please enter correct number!!" << endl;
         exit(1);
     }
-
     grade = a / 10;
-
     switch (grade) {
         case 10:
         case 9 :
@@ -37,6 +34,5 @@ int main() {
         default:
             cout << "This is grade E" << endl;
     }
-
     return (0);
 }

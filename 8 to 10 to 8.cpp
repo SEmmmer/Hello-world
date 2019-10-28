@@ -4,53 +4,42 @@
 //2019114465杨靖华
 #include <iostream>
 #include <cmath>
+template<typename Q>
+Q etot(Q a) {
+    Q mod;
+    Q out = 0;
+    Q n = 0;
 
-using namespace std;
+    while (a > 0) {
+        mod = a % 10;
+        a = a / 10;
+        out += int(mod * pow(8.0, double(n)));
+        n += 1;
+    }
+    return out;
+}
+template<typename B>
+B ttoe(B a) {
+    B mod;
+    B out = 0;
+    B n = 0;
 
+    while (a > 0) {
+        mod = a % 8;
+        a = a / 8;
+        out += int(mod * pow(10.0, double(n)));
+        n += 1;
+    }
+    return out;
+}
 int main() {
     int n;
-    int x = 0;
-    int y;
-    int z = 0;
-    char c;
-
-    cout << "2019114465杨靖华" << endl;
-    cout << "Please Choose " << '\n' << "a: 08 to 10 " << '\n' << "b: 10 to 08 " << endl;
-    cin >> c;
-
-    if (c == 'a') {
-        goto eten;
-    } else {
-        if (c == 'b') {
-            goto teight;
-        }
-    }
-
-    eten:
-    cout << "You are using a 8->10 translator " << endl;
-    cout << "Please input a number" << endl;
-    cin >> n;
-    y = n % 10;
-    while (y != 0) {
-        n = n / 10;
-        x = x + y * pow(8, z);
-        z = z + 1;
-        y = n % 10;
-    }
-    cout << "We get " << x << endl;
-
-    teight:
-    cout << "You are using a 10->8 translator " << endl;
-    cout << "Please input a number" << endl;
-    cin >> n;
-    y = n % 8;
-    while (y != 0) {
-        n = n / 8;
-        x = x + y * pow(10, z);
-        z = z + 1;
-        y = n % 8;
-    }
-    cout << "We get " << x << endl;
-
+    std::cout << "2019114465杨靖华" << std::endl;
+    std::cout << "输入一个8进制数字: ";
+    std::cin >> n;
+    std::cout << "该数字转化为10进制为： " << etot(n) << std::endl;
+    std::cout << "请输入一个10进制数字： ";
+    std::cin >> n;
+    std::cout << "该数字转化为8进制为： " << ttoe(n) << std::endl;
     return 0;
 }
