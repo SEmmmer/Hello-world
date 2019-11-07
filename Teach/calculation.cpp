@@ -1,12 +1,12 @@
 //
-#include "calculation.h"
+#include "../.h/calculation.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 #include <vector>
 #include <cmath>
 #include <functional>
-#include "printID.h"
+#include "../.h/printID.h"
 #if __cplusplus < 201703L
 
 int main() {

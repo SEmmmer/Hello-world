@@ -1,7 +1,7 @@
 //
 //
 
-#include "duck.h"
+#include "../.h/duck.h"
 #include <iostream>
 #include <string>
 

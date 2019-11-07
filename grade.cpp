@@ -1,5 +1,5 @@
-#include "grade.h"
-#include "printID.h"
+#include ".h/grade.h"
+#include ".h/printID.h"
 #include <iostream>
 int main() {
     printID();

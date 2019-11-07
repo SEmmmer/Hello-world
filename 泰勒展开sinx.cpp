@@ -1,10 +1,10 @@
 //
 //
 
-#include "泰勒展开sinx.h"
+#include ".h/泰勒展开sinx.h"
 #include <iostream>
 #include <iomanip>
-#include "printID.h"
+#include ".h/printID.h"
 
 using namespace std;
 double PI = 3.14159265358979323846264328327950288;
