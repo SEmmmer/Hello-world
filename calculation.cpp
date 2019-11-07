@@ -1,5 +1,5 @@
 //
-#include "caculate.h"
+#include "calculation.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
