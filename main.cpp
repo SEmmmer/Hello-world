@@ -1,15 +1,17 @@
-//2019114465杨靖华
+
 #include <iostream>
+#include "printID.h"
 
 using namespace std;
 
 int main() {
+
     int n = 1;
     int i = 1;
     double tax;
     double income;
     double sumtax = 0;
-    cout << "2019114465杨靖华" << endl;
+    printID();
 
     while (n == 1) {
         cout << i << "员工的收入：";

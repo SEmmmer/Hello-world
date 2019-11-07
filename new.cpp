@@ -2,13 +2,16 @@
 // Created by Shirakami Emmmer on 2019/11/1.
 //
 
-#include "new.h"
+//#include "new.h"
 #include <iostream>
-template <typename T>
+#include "printID.h"
+
+
+template<typename T>
 bool isPrime(T p) {
     for (int i = 2; i < p; ++i) {
         int n = p % i;
-        if (n != 0) {
+        if (n == 0) {
             return false;
         }
     }
@@ -18,17 +21,30 @@ bool isPrime(T p) {
 int nextPrime(int p) {
     for (;;) {
         p = p + 1;
-
-        if (isPrime(p)){
+        if (isPrime(p)) {
             return p;
         }
     }
 }
 
-int nextPrime() {
-    return nextPrime(1);
-}
-
 int main() {
+    int n;
+    printID();
+    std::cout << "请输入一个数：";
+    std::cin >> n;
+    std::cout << n << " = ";
+    int prime = 2;
+    for (; n != prime;) {
+        if (n % prime == 0) {
+            n = n / prime;
+            std::cout << prime << " * ";
+        } else {
+            prime = nextPrime(prime);
+            if (prime == n) {
+                std::cout << n << std::endl;
+            }
+        }
+
+    }
     return 0;
 }

@@ -1,17 +1,17 @@
 //
-// Created by 杨靖华 on 2019/10/25.
 //
 
 #include "泰勒展开sinx.h"
 #include <iostream>
 #include <iomanip>
+#include "printID.h"
 
 using namespace std;
 double PI = 3.14159265358979323846264328327950288;
 
 int main() {
-    cout << "2019114465杨靖华" << endl;
 
+    printID();
     double x;
     int step = -1;
     double sinfx;

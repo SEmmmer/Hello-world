@@ -6,11 +6,11 @@
 #define CLION_NEW_H
 
 
-class
 
-new {
+class new {
 
 };
+
 
 
 #endif //CLION_NEW_H

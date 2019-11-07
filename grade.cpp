@@ -1,11 +1,8 @@
 #include "grade.h"
+#include "printID.h"
 #include <iostream>
-
-//2019114465 杨靖华
-
-
 int main() {
-    std::cout << "2019114465 杨靖华" << std::endl;
+    printID();
     std::cout << "请输入10个数字： " << std::endl;
     int a = 0;
     int sum;
