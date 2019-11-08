@@ -7,6 +7,7 @@
 #include <cmath>
 #include <functional>
 #include "../.h/printID.h"
+
 #if __cplusplus < 201703L
 
 int main() {
@@ -14,6 +15,7 @@ int main() {
 }
 
 #else
+
 // interface
 template<typename T>
 class Op {
@@ -95,14 +97,14 @@ public:
 };
 
 template<typename T>
-class Question {
+class Question {//定义一个问题class
 private:
     T lhs;
     T rhs;
-    Op<T> *op;
+    Op<T> *op;//访问op的接口取得一个运算符号的地址
     T ans;
 
-public:
+public://做赋值运算，用于输出
     Question(T lhs, T rhs, Op<T> *op) : lhs(lhs), rhs(rhs), op(op) {
         ans = op->calculate(lhs, rhs);
     }
@@ -125,7 +127,7 @@ public:
 };
 
 template<typename T>
-auto getSupportedOps() {
+auto getSupportedOps() {//根据运算的个数给出一个向量的长度
     std::vector<Op<T> *> SUPPORTED_OPS{
             new Addition<T>(),
             new Subtract<T>(),
@@ -137,12 +139,13 @@ auto getSupportedOps() {
 }
 
 template<typename T>
-T burnNumber() {
+T burnNumber() {//生成随机数
     T num = static_cast<T>(1 + rand() % (10));
     return num;
 }
 
 template<typename T>
+//根据运算个数（向量长度）随机生成运算符
 Op<T> *burnOp() {
     auto ops = getSupportedOps<T>();
     int n = rand() % (ops.size());
@@ -150,15 +153,15 @@ Op<T> *burnOp() {
 }
 
 template<typename T>
-Question<T> burnQuestion() {
+Question<T> burnQuestion() {//生成并返回之前的问题（用class返回）
     return {burnNumber<T>(), burnNumber<T>(), burnOp<T>()};
 }
 
 template<typename T>
 T burnConclusion() {
-    auto q1 = burnQuestion<T>();
-    std::cout << "请计算 " << q1.getLhs() << q1.getOp() << q1.getRhs() << " = ";;
-    return q1.getAns();
+    auto q1 = burnQuestion<T>();//自动类型，给一个class
+    std::cout << "请计算 " << q1.getLhs() << q1.getOp() << q1.getRhs() << " = ";//取得这个变量里的运算
+    return q1.getAns();//取得变量里的答案
 }
 
 template<typename A, typename B>
@@ -166,14 +169,10 @@ struct isSameType {
     constexpr static bool value = false;
 };
 
-template <typename A>
-struct isSameType<A, A> {
+template<typename A>
+struct isSameType<A, A> {//判断两个类型是否相等
     constexpr static bool value = true;
 };
-
-// fact 1 = 1
-// fact n = n * fact (n - 1)
-
 
 template<typename T>
 void doQuestion() {
@@ -200,7 +199,6 @@ int main() {
 
     doQuestion<double>();
     doQuestion<int>();
-//    doQuestion<char>();
 
 //    auto f = [](auto a) { return a + 1;};
     // std::function<?(?)>
@@ -224,4 +222,5 @@ int main() {
 
     return 0;
 }
+
 #endif

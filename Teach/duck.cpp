@@ -73,14 +73,14 @@ int main() {
     Man man;
     Woman woman;
 
-    CannotFuck laji;
+//    CannotFuck laji;
 
     doFuck(a);
     doFuck(man);
     doFuck(woman);
-    doFuck(laji);
+//    doFuck(laji);
 
-    max(laji, laji);
+//    max(laji, laji);
 
     return 0;
 }
