@@ -3,7 +3,6 @@
 #include <iomanip>
 #include ".h/printID.h"
 
-//2019114465 杨靖华
 template<typename T>
 void out(T array, int n) {
     for (int k = 0; k < n + 1; ++k) {
