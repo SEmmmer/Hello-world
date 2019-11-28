@@ -30,6 +30,7 @@ int findMin(T array, int o, int n) {
 }
 
 bool isPrime(int p) {
+    if (p <= 1){ return false; }
     for (int i = 2; i < p; ++i) {
         int n = p % i;
         if (n == 0) { return false; }
@@ -66,6 +67,7 @@ int main() {
     int *a;
     int *b;//creat
     int n;
+    printID();
     std::cout << "你想输入几个数？" << std::endl;
     std::cin >> n;
     if (n <= 0) {

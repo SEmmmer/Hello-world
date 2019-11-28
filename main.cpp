@@ -1,64 +1,97 @@
 
 #include <iostream>
 #include <iomanip>
+//#include <random>
+#include <ctime>
 #include ".h/printID.h"
 
+
+//using Random = std::default_random_engine;
+//template <typename T>
+//using Range = std::uniform_int_distribution<T>;
+
+void out(int *array, int n) {
+    for (int i = 0; i < n; ++i) {
+        std::cout << std::setw(4) << array[i];
+        if ((i + 1) % 5 == 0) { std::cout << "" << std::endl; }//换行
+    }
+    std::cout << "" << std::endl;
+}
+
 template<typename T>
-void out(T array, int n) {
-    for (int k = 0; k < n + 1; ++k) {
-        std::cout << std::setw(10) << array[k];
-        if ((k + 1) % 5 == 0) {
-            std::cout << "" << std::endl;
+T sort(T array, int n) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n - 1; ++j) {
+            if (array[j] < array[j + 1])
+                std::swap(array[j], array[j + 1]);
         }
+    }
+    return array;
+}
+
+int binarySearch(const int *array, int n, int aNum) {
+    int lhs = 0;
+    int rhs = n;
+    int mid = n / 2;
+
+    for (;;) {
+        if (aNum == array[mid]) {
+            return mid;
+        } else if (aNum > array[mid]) {
+            rhs = mid;
+            mid = (rhs + lhs) / 2;
+        } else if (aNum < array[mid]) {
+            lhs = mid;
+            mid = (lhs + rhs) / 2;
+        }
+        if (lhs == rhs) { throw std::runtime_error("not found"); }
     }
 }
 
 int main() {
-    int n;
-    double *array;
+//    Random e(time(nullptr));
+//    Range<int> u(0, 99);
+    srand(static_cast<unsigned int>(time(nullptr)));
     printID();
-    std::cout << "请输入一个大于15的，5的倍数: ";
+    int *array;
+    int n;
+    std::cout << "请输入需要的长度n：";
     std::cin >> n;
-    if (n % 5 != 0 || n < 15) {
-        std::cout << "error!";
-        exit(1);
+    if (n <= 0) {
+        throw std::runtime_error("FUCK negative");
     } else {
-        array = new double[n + 1];
-        if (array == nullptr) { return -1; }
-    }
+        array = new int[n];
+    }//创建一个数组
 
-    std::cout << "请输入 " << n << " 个数据" << std::endl;
-    double sum = 0;
     for (int i = 0; i < n; ++i) {
-        std::cin >> array[i];//组装一个数组 最后一个暂未赋值
-        sum += array[i];
-    }
-    out(array, n - 1);
-    double ave = sum / n;
-    array[n] = ave;
-
-    double *array2;
-    array2 = new double[n + 1];
-    array2[n] = array[n];
-    int left = 0;
-    int right = n - 1;
-
-    for (int j = 0; j < n; ++j) {
-        if (array[j] < array[n]) {
-            array2[right] = array[j];
-            right -= 1;
-        } else {
-            array2[left] = array[j];
-            left += 1;
-        }
+        array[i] = rand() % 100;
     }
 
-    std::cout << "调整后的数据为：" << std::endl;
-    out(array2, n);
-    delete[]array;
-    delete[]array2;
+    std::cout << "输入的数组为：" << std::endl;
+    out(array, n);
+    //现在使用冒泡排序法排序数组
+
+    array = sort(array, n);
+    std::cout << "排序后的数组为:" << std::endl;
+    out(array, n);
+
+    int aNum;
+    std::cout << "请输入一个数字：";
+    std::cout.flush();
+    if (scanf("%d", &aNum) != 1) {
+        throw std::runtime_error("Fuck non-int");
+    }
+    //输入一个待比较的数字
+
+
+    try {
+        int index = binarySearch(array, n, aNum);
+        std::cout << aNum << " 在第 " << index + 1 << " 的位置 " << std::endl;
+    } catch (std::exception &e) {
+        std::cout << "找不到这个数: " << e.what() << std::endl;
+    }
+
+    delete[] array;
     array = nullptr;
-    array2 = nullptr;
     return 0;
 }
-

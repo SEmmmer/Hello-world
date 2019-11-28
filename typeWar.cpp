@@ -72,7 +72,7 @@ int main() {
     wangRuiZhi wangRuiZhi;
 
     wangRuiZhi.longNeck();
-    wangRuiZhi.niShiHanHan();
+//    wangRuiZhi.niShiHanHan();
 
     wangBingJie.hH();
     std::cout << "" << std::endl;
