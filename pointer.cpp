@@ -9,60 +9,38 @@
 
 
 int main() {
-    printID();
-    const int M = 100;
-    int x[M][M];
-    for (int l = 0; l < M; ++l) {
-        for (int i = 0; i < M; ++i) {
-            x[i][l] = 0;
+
+    int row = 0;
+    int column = 0;
+    std::cout << "请输入生成方阵阶数";
+    std::cin >> row;
+    column = row;
+    if (row <= 0 || column <= 0) { throw std::runtime_error("Fuck Negative"); }
+    int i = 0;
+    int **p = new int *[row]; //以p为二维指针生成一行一维指针的地址
+    for (i = 0; i < row; i++) { p[i] = new int[column]; } //开辟列
+
+
+
+    std::cout << "输出数据：" << std::endl;
+    for (i = 0; i < row; i++) {
+        for (int j = 0; j < column; j++) {
+            std::cout << std::setw(3) << p[i][j];
         }
-    }
-    int m = 0;
-    std::cout << "请输入m的值：";
-    std::cin >> m;
-    int num = (m * m + m) / 2;
-    int base = 1;
-    int position = m;
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < M; ++j) {
-            if (base > num) { continue; }
-            if ((j) % position == 0 && j > 0) {
-                position--;
-                break;
-            }
-            x[i][j] = base++;
-        }
+        printf("%s", "/n");
     }
 
-    int y[M][M];
-    for (int n = 0; n < M; ++n) {
-        for (int i = 0; i < M; ++i) {
-            y[M - 1 - n][i] = x[i][n];
-        }
-    }
 
-    for (int k = 0; k < M; ++k) {
-        for (int i = 0; i < M; ++i) {
-            if (y[k][i] == 0) { continue; }
-            std::cout << std::setw(4) << y[k][i];
-        }
-        if (M - k <= m) { std::cout << std::endl; }
-    }
-    printf("%s", "============================\n");
 
-    for (int i1 = 0; i1 < M; ++i1) {
-        if (M - i1 <= m) {
-            std::cout << std::setw(3 * m) << " ";
-        }
-        for (int i = 0; i < M; ++i) {
-            if (y[i1][i] == 0) { continue; }
-            std::cout << std::setw(6) << y[i1][i];
-        }
-        if (M - i1 <= m) {
-            m -= 1;
-            std::cout << std::endl;
-        }
-    }
 
+
+
+    //释放内存
+    for (i = 0; i < row; i++) {
+        delete[] p[i];
+        p[i] = nullptr;
+    }
+    delete[] p;
+    p = nullptr;
     return 0;
 }

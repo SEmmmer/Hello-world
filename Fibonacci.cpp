@@ -6,124 +6,54 @@
 #include <iostream>
 #include <iomanip>
 
-
-int fibonacci(int n) {
-    if (n == 1 || n == 2) {
-        return 1;
-    } else if (n >= 3) {
-        return fibonacci(n - 1) + fibonacci(n - 2);
+template<typename T>
+void out(T matrix, int row, int column) {
+    for (int i = 0; i < row - 1; ++i) {
+        for (int j = 0; j < column - 1; ++j) {
+            std::cout << std::setw(6) << matrix[i][j];
+        }
+        std::cout << std::endl;
     }
-    std::__throw_runtime_error("fuck negative");
-}
-
-void out(int *array, int n) {
-    for (int i = 0; i < n + 1; ++i) {
-        if (array[i] == 0) { continue; }
-        std::cout << std::setw(8) << array[i];
-        if ((i + 1) % 20 == 0) { std::cout << "" << std::endl; }//换行
-    }
-    std::cout << "" << std::endl;
 }
 
 template<typename T>
-T sort(T array, int n) {
-    for (int i = 0; i < n + 1; ++i) {
-        for (int j = 0; j < n; ++j) {
-            if (array[j] > array[j + 1])
-                std::swap(array[j], array[j + 1]);
-        }
+int aveOfC(T *p, int row, int column, int st) {
+    int sum = 0;
+    for (int i = 0; i < row; ++i) {
+        sum += p[i][st];
     }
-    return array;
+    return sum / (column - 2);
 }
 
-template<typename T>
-int countZero(T array, int n) {
-    int repeat = 0;
-    for (int i = 0; i < n + 1; ++i) {
-        if (array[i] == 0) {
-            repeat += 1;
-            continue;
-        }
-    }
-    return repeat;
-}
-
-template<typename T>
-T remove(T array, int n, double ave) {
-    for (int i = 0; i < n + 1; ++i) {
-        if (array[i] < ave) {
-            array[i] = 0;
-        }
-    }
-    return array;
-}
-
-template<typename T>
-T elimination(T array, int n) {
-    int a = array[0];
-    for (int i, j = 1; i < n + 1 && j < n + 1;) {
-        if (array[j] == a) {
-            j++;
-        } else if (a != array[j]) {
-            array[i] = array[j];
-            a = array[j];
-            i++;
-        }
-    }
-    for (int k = n - 1; k > 0; k -= 1) {
-        if (array[n] == array[k]) {
-            array[n] = 0;
-            break;
-        }
-    }
-    for (int l = n - 2; l > 0; l -= 1) {
-        if (array[n - 1] == array[l]) {
-            array[n - 1] = 0;
-            break;
-        }
-    }
-    return array;
-}
-
+//squareNum
 int main() {
     printID();
-    int *array;
-    int n;
-    std::cout << "请输入希望的数组长度： ";
-    std::cin >> n;
-    if (n <= 0) {
-        std::__throw_runtime_error("fuck negative 2");
-    } else {
-        array = new int[n + 1];
-    }//生成了一个空的数组
-
-    for (int i = 0; i < n; ++i) {
-        array[i] = fibonacci(i + 1);
-    }//赋值斐波那契
-    std::cout << "整理前的数组：" << std::endl;
-    out(array, n);
-    std::cout << "请输入要插入的数字： ";
-    std::cin >> array[n];
-    array = sort(array, n);
-    std::cout << "整理后的数组：";
-    std::cout << "" << std::endl;
-    out(array, n);
-    array = elimination(array, n);
-    std::cout << "查重整理后的数组： " << std::endl;
-    out(array, n);//输出整理
-    int num = countZero(array,n);
-    double sum = 0;
-    for (int j = 0; j < n + 1; ++j) {
-        sum += array[j];
+    int num = 0;
+    printf("%s", "人数是：");
+    std::cin >> num;
+    int column = 5;
+    int row = num + 1;
+    int **p = new int *[row];
+    for (int i = 0; i < row; ++i) { p[i] = new int[column]; }//生成了一个方阵
+    printf("%s", "请输入分别 学号 和 科目 1 2 3 的成绩\n");
+    for (int j = 0; j < row - 1; ++j) {
+        for (int i = 0; i < column - 1; ++i) {
+            std::cin >> p[j][i];
+        }
     }
-    double ave = sum / (n - num + 1);
-    array = remove(array, n, ave);
-    std::cout << "平均数为：" << ave << std::endl;
-    std::cout << "删除后的： " << std::endl;
-    out(array, n);
+    printf("%s", "   学号  科目1  科目2  科目3 \n");
+
+    out(p, row, column);
+    for (int k = 0; k < row - 1; ++k) {
+        std::cout << "学生 " << p[k][0] << " 的平均成绩为：" << (p[k][1] + p[k][2] + p[k][3]) / 3 << std::endl;
+
+    }
+    int st = 1;
+    for (; st < num + 1; ++st) {
+        std::cout << "科目" << st << " 的平均分是：" << aveOfC(p, row, column, st) << std::endl;
+
+    }
 
 
-    delete[]array;
-    array = nullptr;
     return 0;
 }
