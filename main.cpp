@@ -1,97 +1,47 @@
 
 #include <iostream>
 #include <iomanip>
-//#include <random>
 #include <ctime>
 #include ".h/printID.h"
 
-
-//using Random = std::default_random_engine;
-//template <typename T>
-//using Range = std::uniform_int_distribution<T>;
-
-void out(int *array, int n) {
-    for (int i = 0; i < n; ++i) {
-        std::cout << std::setw(4) << array[i];
-        if ((i + 1) % 5 == 0) { std::cout << "" << std::endl; }//换行
-    }
-    std::cout << "" << std::endl;
-}
-
 template<typename T>
-T sort(T array, int n) {
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n - 1; ++j) {
-            if (array[j] < array[j + 1])
-                std::swap(array[j], array[j + 1]);
-        }
-    }
-    return array;
-}
-
-int binarySearch(const int *array, int n, int aNum) {
-    int lhs = 0;
-    int rhs = n;
-    int mid = n / 2;
-
-    for (;;) {
-        if (aNum == array[mid]) {
-            return mid;
-        } else if (aNum > array[mid]) {
-            rhs = mid;
-            mid = (rhs + lhs) / 2;
-        } else if (aNum < array[mid]) {
-            lhs = mid;
-            mid = (lhs + rhs) / 2;
-        }
-        if (lhs == rhs) { throw std::runtime_error("not found"); }
+void out(T array, int p) {
+    for (int i = 0; i < p; ++i) {
+        std::cout << std::setw(8) << *(array++);
+        if ((i + 1) % 10 == 0) { std::cout << std::endl; }
     }
 }
+
 
 int main() {
-//    Random e(time(nullptr));
-//    Range<int> u(0, 99);
-    srand(static_cast<unsigned int>(time(nullptr)));
     printID();
-    int *array;
-    int n;
-    std::cout << "请输入需要的长度n：";
-    std::cin >> n;
-    if (n <= 0) {
-        throw std::runtime_error("FUCK negative");
-    } else {
-        array = new int[n];
-    }//创建一个数组
+    srand(static_cast<unsigned int>(time(nullptr)));
+    const int N = 30;
+    int array[N];
 
-    for (int i = 0; i < n; ++i) {
-        array[i] = rand() % 100;
+    for (int &i : array) {
+        i = 1 + rand() % 100;
+    }//随机数赋值成功
+
+    out(array, N);
+    int A = 0;
+    int B = 0;
+    int C = 0;
+    int D = 0;
+    int E = 0;//5 classes
+
+    for (int j = 0; j < N; ++j) {
+        if (*(array + j) < 60) { E++; continue; }
+        if (*(array + j) < 70) { D++; continue; }
+        if (*(array + j) < 80) { C++; continue; }
+        if (*(array + j) < 90) { B++; continue; }
+        if (*(array + j) < 100) { A++; continue; }
     }
-
-    std::cout << "输入的数组为：" << std::endl;
-    out(array, n);
-    //现在使用冒泡排序法排序数组
-
-    array = sort(array, n);
-    std::cout << "排序后的数组为:" << std::endl;
-    out(array, n);
-
-    int aNum;
-    std::cout << "请输入一个数字：";
-    std::cout.flush();
-    if (scanf("%d", &aNum) != 1) {
-        throw std::runtime_error("Fuck non-int");
-    }
-    //输入一个待比较的数字
-
-
-    try {
-        int index = binarySearch(array, n, aNum);
-        std::cout << aNum << " 在第 " << index + 1 << " 的位置 " << std::endl;
-    } catch (std::exception &e) {
-        std::cout << "找不到这个数: " << e.what() << std::endl;
-    }
-
-    delete[] array;
-    array = nullptr;
+    std::cout << "学生成绩如下：" << std::endl;
+    std::cout << "分数段 90-100 ：" << A << std::endl;
+    std::cout << "分数段 80-89 ：" << B << std::endl;
+    std::cout << "分数段 70-79 ：" << C << std::endl;
+    std::cout << "分数段 60-69 ：" << D << std::endl;
+    std::cout << "60 分以下 ：" << E << std::endl;
     return 0;
 }
