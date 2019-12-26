@@ -7,53 +7,40 @@
 #include <iomanip>
 #include <cmath>
 
-template<typename T>
-void out(T array, int p) {
-    for (int i = 0; i < p; ++i) {
-        std::cout << std::setw(10) << *(array++);
+using namespace std;
+//固定大小，很难受
+
+
+void ArrRef(int (&arr)[5]) {
+    for (int i = 0; i < 5; ++i) {
+        cout << arr[i] << " ";
     }
-    std::cout << std::endl;
+    cout << "\n";
 }
 
-double factorial(int n) {
-    if (n < 0) { throw std::runtime_error("fuck"); }
-    if (n == 0) { return 1; }
-    return n * factorial(n - 1);
-}
-
-template<typename T>
-void calculate(T array, int n, int x) {
-    double temp = 0.0;
-    for (int i = 0; i < n; ++i) {
-        temp = pow(static_cast<double >(x), static_cast<double >(i + 1)) / factorial(i + 1);
-        *array = temp;
-        array++;
+//使用模板通用化一些，对数组通用
+template<size_t SIZE>
+void fibBack(int (&arr)[SIZE]) {
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
     }
-    out(array, n);
+    cout << "\n";
 }
 
-template<typename T>
-double sum(T array, int n) {
-    double sum = 0.0;
-    for (int i = 0; i < n; ++i) { sum += *array++; }
-    return sum;
-}
 
-int main() {
-    printID();
-    int n = 0;
-    int x = 0;
-    std::cout << "n,x";
-    std::cin >> n;
-    std::cin >> x;
-    double *p = new double[n];
-    for (int i = 0; i < n; ++i) {
-        p[i] = i + 1;
-    }
-    out(p, n);
-    calculate(p, n, x);
+int main(int argc, char *argv[]) {
 
+    const int MAX_INDEX(5);
+
+    int aIndex[MAX_INDEX] = {1, 3, 4, 5, 6};
+
+    //如果改了数组大小MAX_INDEX的值，两个大小对不上就会有问题
+
+    ArrRef(aIndex);
+
+    //如果改了数组大小MAX_INDEX的值，也无所谓
+
+    fibBack(aIndex);
 
     return 0;
 }
-
