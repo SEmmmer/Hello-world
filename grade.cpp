@@ -1,30 +1,38 @@
-#include ".h/grade.h"
-#include ".h/printID.h"
 #include <iostream>
-int main() {
-    printID();
-    std::cout << "请输入10个数字： " << std::endl;
-    int a = 0;
-    int sum;
-    int ys;
 
-    for (int i = 0; i < 10; ++i) {
-        std::cin >> a;
-        ys = a;
-        sum = 0;
-        if (i==1){
-            std::cout << "数字之和为7的有： " << std::endl;
+
+
+class blind {
+public:
+    void iSeeTheC(char color) {
+        if (color == 'G') {
+            eye = 'B';
+            brain = 'G';
+            mouse = brain;
         }
-        while (ys > 0) {
-            sum += ys % 10;
-            ys /= 10;
+        if (color == 'B'){
+            eye = 'G';
+            brain = 'B';
+            mouse = brain;
         }
+    };
 
-
-        if (sum == 7) {
-            std::cout << a << " ";
-        }
-
+    void iSayTheC(){
+        std::cout << "I see the " << mouse;
     }
-    return 0;
+
+private:
+    char eye;
+    char brain;
+    char mouse;
+};
+
+int main() {
+    const char GREEN = 'G';
+    const char BLUE = 'B';
+
+    blind jack;
+    jack.iSeeTheC(GREEN);
+    jack.iSayTheC();
+
 }
