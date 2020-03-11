@@ -4,80 +4,37 @@
 
 #include ".h/typeWar.h"
 #include <iostream>
-
-class wangRuiZhi {
-public:
-    void longNeck() {
-        std::cout << "脖子长不需要理由" << std::endl;
-    }
-
-    void niShiHanHan() {
-        lengthOfNeck();
-    }
-
-private:
-
-    void lengthOfNeck() {
-        std::cout << "真实长度为" << length << "cm" << std::endl;
-
-    }
-
-    int length = 18;
-
-};
-
-class xieGirlFriend {
-public:
-    void name() {
-        std::cout << "大家好我是谢松灿的女朋友 蔡徐坤" << std::endl;
-    }
-
-    bool iLikeItToo = true;
-private:
-};
-
-class xieSongCan {
-public:
-    void kingOfH() {
-        std::cout << "黄腔之王谢松灿！" << std::endl;
-    }
-
-    bool keYi(bool n) {
-        if (n) {
-            return iLikeIt;
-        }
-    }
-
-private:
-    bool iLikeIt = true;
-};
-
-class wangBingJie {
-public:
-    void hH() {
-        std::cout << "吾乃江东小霸王炳杰傻逼。" << std::endl;
-    }
-};
-
-void fuck(bool n) {
-    if (n) {
-        std::cout << "They fuck together." << std::endl;
-    }
-}
+#include <string>
+#include <map>
 
 int main() {
-    wangBingJie wangBingJie;
-    xieGirlFriend saKi;
-    xieSongCan xieSongCan;
-    wangRuiZhi wangRuiZhi;
+    char str[] = {'a', 'b', 'p', 'c', 'p', 'l', 'e', 'a', '\0'};
+    char *pStr = &str[0];
+    int cmp;
+    std::map<int, std::string> mapStudent;
+    mapStudent[0] = "ale";
+    mapStudent[1] = "apple";
+    mapStudent[2] = "monkey";
+    mapStudent[3] = "plea";
+    std::map<int, std::string>::iterator iter;
 
-    wangRuiZhi.longNeck();
-//    wangRuiZhi.niShiHanHan();
+    int j = 0;
 
-    wangBingJie.hH();
-    std::cout << "" << std::endl;
-    xieSongCan.kingOfH();
-    saKi.name();
-    fuck(xieSongCan.keYi(saKi.iLikeItToo));
-    return 0;
+    for (iter = mapStudent.begin(); iter != mapStudent.end(); iter++) {
+        int nSize = mapStudent[iter->first].size();
+        char *pStudent = &mapStudent[iter->first][0];
+        j = 0;
+
+        for (int i = 0; i < 8; ++i) {
+            for (; j < nSize;) {
+                cmp = memcmp((pStr + i), (pStudent + j), 1);
+                if (cmp == 0) {
+                    j++;
+                    break;
+                } else { break; }
+            }
+        }
+        std::cout << j;
+    }
+
 }
