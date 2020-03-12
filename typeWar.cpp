@@ -4,7 +4,6 @@
 
 #include ".h/typeWar.h"
 #include <iostream>
-#include <string>
 #include <map>
 
 int main() {
@@ -19,6 +18,8 @@ int main() {
     std::map<int, std::string>::iterator iter;
 
     int j = 0;
+    int maxNumber = 0;
+    int maxCode = 0;
 
     for (iter = mapStudent.begin(); iter != mapStudent.end(); iter++) {
         int nSize = mapStudent[iter->first].size();
@@ -34,7 +35,14 @@ int main() {
                 } else { break; }
             }
         }
-        std::cout << j;
+        if (maxNumber < j) {
+            maxNumber = j;
+            maxCode = iter->first;
+        }
     }
+    std::cout << "出现的最大数值中最靠前的是第: " << maxCode + 1 << " 个" << std::endl;
+    std::cout << "它的位数为: " << maxNumber << " 位" << std::endl;
+    std::cout << "它是: " << mapStudent[maxCode] << std::endl;
 
+    return 0;
 }
