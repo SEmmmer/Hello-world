@@ -31,7 +31,7 @@ int main() {
     const char GREEN = 'G';
     const char BLUE = 'B';
 
-    blind jack;
+    blind jack{};
     jack.iSeeTheC(GREEN);
     jack.iSayTheC();
 
