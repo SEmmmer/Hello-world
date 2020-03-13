@@ -23,11 +23,11 @@ int main() {
             }
             time += 1;
             if (time == 2) {
-                std::cout << str << " 不是回文字符串" << std::endl;
+                std::cout << str << " （去掉一个字符后也）不是回文字符串" << std::endl;
                 return 0;
             }
         }
     }
-    std::cout << str << " （最多去掉一个字母后）是回文字符串" << std::endl;
+    std::cout << str << " （最多去掉一个字符后）是回文字符串" << std::endl;
     return 0;
 }
