@@ -6,7 +6,7 @@
 #define CLION_LEECODE_680_H
 
 
-class leeCode {
+class leetCode {
 
 };
 
