@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-bool palindromeStr(char *lhs, char *rhs) {
+bool palindromeStr(const char *lhs, const char *rhs) {
     int time = 0;
     for (; *lhs != *rhs; lhs++, rhs--) {
         if (memcmp(lhs, rhs, 1) != 0) {
@@ -27,8 +27,8 @@ bool palindromeStr(char *lhs, char *rhs) {
 int main() {
     std::string str;
     std::cin >> str;
-    char *lhs = &str[0];
-    char *rhs = &str[str.length() - 1];
+    const char *lhs = &str[0];
+    const char *rhs = &str[str.length() - 1];
     if (palindromeStr(lhs, rhs)) {
         std::cout << str << " （最多去掉一个字符后）是回文字符串" << std::endl;
     } else {

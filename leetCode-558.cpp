@@ -2,7 +2,7 @@
 // Created by Shirakami Emmmer on 2019/11/14.
 //
 
-#include ".h/typeWar.h"
+#include ".h/leetCode-558.h"
 #include <iostream>
 #include <map>
 
